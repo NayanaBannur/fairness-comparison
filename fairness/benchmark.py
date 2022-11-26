@@ -10,7 +10,7 @@ from fairness.metrics.list import get_metrics
 
 from fairness.algorithms.ParamGridSearch import ParamGridSearch
 
-NUM_TRIALS_DEFAULT = 10
+NUM_TRIALS_DEFAULT = 1
 
 def get_algorithm_names():
     result = [algorithm.get_name() for algorithm in ALGORITHMS]
@@ -31,7 +31,7 @@ def run(num_trials = NUM_TRIALS_DEFAULT, dataset = get_dataset_names(),
         print("\nEvaluating dataset:" + dataset_obj.get_dataset_name())
 
         processed_dataset = ProcessedData(dataset_obj)
-        train_test_splits = processed_dataset.create_train_test_splits(num_trials)
+        train_test_splits = processed_dataset.create_train_test_splits(num_trials, dataset_obj.split_ix)
 
         all_sensitive_attributes = dataset_obj.get_sensitive_attributes_with_joint()
         for sensitive in all_sensitive_attributes:
@@ -58,6 +58,7 @@ def run(num_trials = NUM_TRIALS_DEFAULT, dataset = get_dataset_names(),
                                      dataset_obj, processed_dataset.get_sensitive_values(k), k))
                           for k in train_test_splits.keys())
                 for i in range(0, num_trials):
+                    print("Trial ", i+1)
                     for supported_tag in algorithm.get_supported_data_types():
                         train, test = train_test_splits[supported_tag][i]
                         try:
