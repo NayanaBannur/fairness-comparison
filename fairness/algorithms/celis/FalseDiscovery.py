@@ -28,15 +28,14 @@ class FalseDiscovery(General):
 				temp = np.append(np.append(x, -1), 0)
 				prob_m1_0 = multivariate_normal.pdf(temp, mean=mean, cov=cov, allow_singular=1)
 
-
-				prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+				prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_1_1 + prob_1_0) else 0
 				#print(prob_y_1)
 
-				prob_z_0 = (prob_m1_0 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
-				prob_z_1 = (prob_m1_1 + prob_1_1) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+				prob_z_0 = (prob_m1_0 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_m1_0 + prob_1_0) else 0
+				prob_z_1 = (prob_m1_1 + prob_1_1) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_m1_1 + prob_1_1) else 0
 
-				probc_m1_0 = prob_m1_0 / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
-				probc_m1_1 = prob_m1_1 / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+				probc_m1_0 = prob_m1_0 / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if prob_m1_0 else 0
+				probc_m1_1 = prob_m1_1 / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if prob_m1_1 else 0
 
 				c_0 = prob_y_1 - 0.6
 				c_1 = u_1 * (probc_m1_0 - a*prob_z_0) + u_2 * (probc_m1_1 - a*prob_z_1)
@@ -71,16 +70,14 @@ class FalseDiscovery(General):
 				temp = np.append(np.append(x, -1), 0)
 				prob_m1_0 = multivariate_normal.pdf(temp, mean=mean, cov=cov, allow_singular=1)
 
-
-				prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+				prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_1_1 + prob_1_0) else 0
 				#print(prob_y_1)
 
-				prob_z_0 = (prob_m1_0 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
-				prob_z_1 = (prob_m1_1 + prob_1_1) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+				prob_z_0 = (prob_m1_0 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_m1_0 + prob_1_0) else 0
+				prob_z_1 = (prob_m1_1 + prob_1_1) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_m1_1 + prob_1_1) else 0
 
-
-				probc_m1_0 = prob_m1_0 / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
-				probc_m1_1 = prob_m1_1 / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+				probc_m1_0 = prob_m1_0 / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if prob_m1_0 else 0
+				probc_m1_1 = prob_m1_1 / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if prob_m1_1 else 0
 
 				c_0 = prob_y_1 - 0.6
 				c_1 = u_1 * (probc_m1_0 - a*prob_z_0) + u_2 * (probc_m1_1 - a*prob_z_1)
