@@ -1,6 +1,7 @@
 from fairness.data.objects.Sample import Sample
 from fairness.data.objects.Ricci import Ricci
 from fairness.data.objects.Adult import Adult
+from fairness.data.objects.DonorsChoose import DonorsChoose
 from fairness.data.objects.German import German
 from fairness.data.objects.PropublicaRecidivism import PropublicaRecidivism
 from fairness.data.objects.PropublicaViolentRecidivism import PropublicaViolentRecidivism
@@ -23,11 +24,12 @@ DATASETS = [
 #     sensitive_attr="sex-race")
 
 # Real datasets:
-    Ricci(),
-    Adult(),
-    German(),
-    PropublicaRecidivism(),
-    PropublicaViolentRecidivism()
+#     Ricci(),
+#     Adult(),
+    DonorsChoose()
+    # German(),
+    # PropublicaRecidivism(),
+    # PropublicaViolentRecidivism()
     ]
 
 
