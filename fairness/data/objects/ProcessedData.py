@@ -19,7 +19,7 @@ class ProcessedData():
     def get_dataframe(self, tag):
         return self.dfs[tag]
 
-    def create_train_test_splits(self, num):
+    def create_train_test_splits(self, num, split_ix=None):
         if self.has_splits:
             return self.splits
 
@@ -29,12 +29,13 @@ class ProcessedData():
             n = len(list(self.dfs.values())[0])
 
             a = numpy.arange(n)
-            numpy.random.shuffle(a)
+            if split_ix is None:
+                numpy.random.shuffle(a)
+                split_ix = int(n * TRAINING_PERCENT)
 
-            split_ix = int(n * TRAINING_PERCENT)
             train_fraction = a[:split_ix]
             test_fraction = a[split_ix:]
-            
+
             for (k, v) in self.dfs.items():
                 train = self.dfs[k].iloc[train_fraction]
                 test = self.dfs[k].iloc[test_fraction]
