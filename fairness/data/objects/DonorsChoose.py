@@ -18,7 +18,7 @@ class DonorsChoose(Data):
                                  'title_word_count', 'short_des_word_count', 'need_stmt_word_count',
                                  'essay_word_count', 'school_hist_unfunded_rate', 'unfunded']
         self.missing_val_indicators = []
-        self.split_ix = 110536
+        self.split_ix = 96825  # 110536
 
-    def handle_missing_data(self, dataframe):
-        return dataframe.fillna('Missing')
+    # def handle_missing_data(self, dataframe):
+    #     return dataframe.fillna('Missing')
