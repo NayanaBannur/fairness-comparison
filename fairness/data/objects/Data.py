@@ -12,7 +12,7 @@ ANALYSIS_DIR = BASE_DIR / "analysis"
 
 class Data():
     def __init__(self):
-        pass
+        self.split_ix = None
 
     def get_dataset_name(self):
         """
