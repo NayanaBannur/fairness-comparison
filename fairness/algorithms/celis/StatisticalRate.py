@@ -27,11 +27,11 @@ class StatisticalRate(General):
 			prob_m1_0 = multivariate_normal.pdf(temp, mean=mean, cov=cov, allow_singular=1)
 
 
-			prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+			prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_1_1 + prob_1_0) else 0
 			#print(prob_y_1)
 
-			prob_z_0 = (prob_m1_0 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
-			prob_z_1 = (prob_m1_1 + prob_1_1) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+			prob_z_0 = (prob_m1_0 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_m1_0 + prob_1_0) else 0
+			prob_z_1 = (prob_m1_1 + prob_1_1) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_m1_1 + prob_1_1) else 0
 
 			c_0 = prob_y_1 - 0.5
 			c_1 = prob_z_0/z_0
@@ -66,11 +66,11 @@ class StatisticalRate(General):
 			temp = np.append(np.append(x, -1), 0)
 			prob_m1_0 = multivariate_normal.pdf(temp, mean=mean, cov=cov, allow_singular=1)
 
-			prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+			prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_1_1 + prob_1_0) else 0
 			#print(prob_y_1)
 
-			prob_z_0 = (prob_m1_0 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
-			prob_z_1 = (prob_m1_1 + prob_1_1) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
+			prob_z_0 = (prob_m1_0 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_m1_0 + prob_1_0) else 0
+			prob_z_1 = (prob_m1_1 + prob_1_1) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) if (prob_m1_1 + prob_1_1) else 0
 
 			c_0 = prob_y_1 - 0.5
 			c_1 = prob_z_0/z_0
