@@ -408,7 +408,7 @@ class General:
 
 		print("Train")
 		span = self.getRange(eps, tau)
-		for (a,b) in span[:1]:
+		for (a,b) in span:
 			print("-----",a,b)
 
 			samples = self.getRandomSamples(mean_train, cov_train)
@@ -435,8 +435,10 @@ class General:
 
 		print("Test")
 		y_test_res = []
+		test_scores = []
 		for x in x_test:
 				t = self.getValueForX(mean, cov, p, q, paramsOpt, samples,  z_0, z_1, x)
+				test_scores.append(t)
 
 				if t > 0 :
 					y_test_res.append(1)
