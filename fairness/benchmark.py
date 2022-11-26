@@ -1,4 +1,3 @@
-import fire
 import os
 import statistics
 import sys
@@ -166,7 +165,7 @@ def create_detailed_file(filename, dataset, sensitive_dict, tag):
     # return f
 
 def main():
-    fire.Fire(run)
+    run()
 
 if __name__ == '__main__':
     main()

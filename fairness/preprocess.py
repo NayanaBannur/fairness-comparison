@@ -1,7 +1,6 @@
 import sys
 import os
 import pandas as pd
-import fire
 from fairness.data.objects.list import DATASETS, get_dataset_names
 
 def prepare_data(dataset_names = get_dataset_names()):
@@ -112,7 +111,7 @@ def make_class_attr_num(dataframe, class_attr, positive_val):
     return dataframe
 
 def main():
-    fire.Fire(prepare_data)
+    prepare_data()
 
 if __name__ == '__main__':
     main()
