@@ -16,7 +16,7 @@ from fairness.metrics.MCC import MCC
 
 
 ALGORITHMS = [
-   CelisAlgorithmFairDiscovery(),
+   CelisAlgorithmFairDiscovery(), CelisAlgorithmStatParity()
 #    SVM(), GaussianNB(), LogisticRegression(), DecisionTree(),     # baseline
 #    KamishimaAlgorithm(),                                          # Kamishima
 #    CaldersAlgorithm(),                                            # Calders
